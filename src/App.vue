@@ -1,85 +1,70 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
+import { ref, reactive } from 'vue';
+import { ConfigProvider } from 'ant-design-vue';
+import enUS from 'ant-design-vue/es/locale/en_US';
+import AppLayout from './layouts/AppLayout.vue';
+
+const themeConfig = reactive({
+  token: {
+    colorPrimary: '#00b96b',
+    borderRadius: 6,
+    colorLink: '#00b96b',
+  },
+  components: {
+    Button: {
+      colorPrimary: '#00b96b',
+      algorithm: true,
+    },
+    Input: {
+      colorPrimary: '#00b96b',
+    },
+  },
+});
+
+const componentSize = ref('middle');
+
+const locale = ref(enUS);
+
+const updateTheme = (newTheme) => {
+  Object.assign(themeConfig.token, newTheme);
+};
+
+const setComponentSize = (size) => {
+  componentSize.value = size;
+};
+
+const setLocale = (newLocale) => {
+  locale.value = newLocale;
+};
+
+defineExpose({
+  updateTheme,
+  setComponentSize,
+  setLocale,
+});
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <a-config-provider :theme="themeConfig" :locale="locale" :componentSize="componentSize">
+    <header>
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <div class="wrapper">
+        <h1>Hello Vue 3 + Vite + Vue Router</h1>
+        <a-button>Add</a-button>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-  <RouterView />
+    <RouterView />
+  </a-config-provider>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<style scoped></style>
