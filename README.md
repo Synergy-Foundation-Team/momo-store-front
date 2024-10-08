@@ -1,4 +1,6 @@
-# momo-store-front
+# Momo store front
+
+![Momo Banner](./src/assets/logo/MoMoBanner.jpg)
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -18,6 +20,18 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ```sh
 npm install
+```
+
+### Run with docker compose for Development
+
+```sh
+docker compose -f docker-compose.dev.yml up --build
+```
+
+### Run with docker compose for Production
+
+```sh
+docker compose -f docker-compose.prod.yml up --build
 ```
 
 ### Compile and Hot-Reload for Development
