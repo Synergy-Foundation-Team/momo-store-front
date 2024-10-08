@@ -2,7 +2,6 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { ref, reactive, type RendererElement, type RendererNode, type VNode } from 'vue';
 import enUS from 'ant-design-vue/es/locale/en_US';
-import TheWelcome from './components/TheWelcome.vue';
 import type { Locale } from 'ant-design-vue/es/locale';
 
 const themeConfig = reactive({
