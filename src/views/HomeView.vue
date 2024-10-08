@@ -34,7 +34,7 @@ onMounted(() => {
 <style scoped>
 .todo-list {
   max-height: 200px;
-  /* Adjust the height as needed */
+
   overflow-y: auto;
 }
 </style>
